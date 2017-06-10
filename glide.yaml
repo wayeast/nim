@@ -1,0 +1,3 @@
+package: github.com/wayeast/nim
+import:
+- package: github.com/fighterlyt/permutation
