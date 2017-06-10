@@ -24,19 +24,19 @@ var winning_positions [][]uint8 = [][]uint8{
 	{5, 9, 12},
 }
 
-var WinningStates = make(map[GameState]bool)
+var WinningStates = make(map[GameState]int)
 
 func init() {
 	// Fill out WinningStates with permutations of winning_positions
 	for _, wp := range winning_positions {
-		permutator, err := permutation.NewPerm(wp, nil)
+		p, err := permutation.NewPerm(wp, nil)
 		if err != nil {
-			fmt.Printf("Error creating permutator: %s\n", err)
+			fmt.Printf("Error creating p: %s\n", err)
 			os.Exit(1)
 		}
-		for perm, err := permutator.Next(); err == nil; perm, err = permutator.Next() {
-			state := New(perm.([]uint8)[0], perm.([]uint8)[1], perm.([]uint8)[2])
-			WinningStates[state] = true
+		for res, err := p.Next(); err == nil; res, err = p.Next() {
+			gs := New(res.([]uint8)[0], res.([]uint8)[1], res.([]uint8)[2])
+			WinningStates[gs] = gs.Magnitude()
 		}
 	}
 
@@ -44,18 +44,19 @@ func init() {
 	var i uint8
 	for i = 1; i <= 15; i++ {
 		var seed []uint8 = []uint8{i, i, 0}
-		permutator, err := permutation.NewPerm(seed, nil)
+		p, err := permutation.NewPerm(seed, nil)
 		if err != nil {
-			fmt.Printf("Error creating permutator: %s\n", err)
+			fmt.Printf("Error creating p: %s\n", err)
 			os.Exit(1)
 		}
-		for perm, err := permutator.Next(); err == nil; perm, err = permutator.Next() {
-			state := New(perm.([]uint8)[0], perm.([]uint8)[1], perm.([]uint8)[2])
-			WinningStates[state] = true
+		for res, err := p.Next(); err == nil; res, err = p.Next() {
+			gs := New(res.([]uint8)[0], res.([]uint8)[1], res.([]uint8)[2])
+			WinningStates[gs] = gs.Magnitude()
 		}
 	}
 }
 
 func IsWinningState(gs GameState) bool {
-	return WinningStates[gs]
+	_, ok := WinningStates[gs]
+	return ok
 }
