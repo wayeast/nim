@@ -40,7 +40,7 @@ func (gs GameState) Magnitude() int {
 	return int(gs.A()) + int(gs.B()) + int(gs.C())
 }
 
-var twos_masks = map[string]uint32{
+var TwosMasks = map[string]uint32{
 	"A": math.MaxUint8<<16 | math.MaxUint8<<8,
 	"B": math.MaxUint8<<8 | math.MaxUint8,
 	"C": math.MaxUint8<<16 | math.MaxUint8,
@@ -49,18 +49,7 @@ var twos_masks = map[string]uint32{
 func (gs GameState) Twos() map[string]GameState {
 	m := make(map[string]GameState)
 	for _, key := range []string{"A", "B", "C"} {
-		m[key] = GameState(uint32(gs) & twos_masks[key])
+		m[key] = GameState(uint32(gs) & TwosMasks[key])
 	}
 	return m
-}
-
-func (gs GameState) CanGoToWinningState() (GameState, error) {
-	for ws, mg := range WinningStates {
-		for key, two := range gs.Twos() {
-			if uint32(ws)&twos_masks[key] == uint32(two) && mg < gs.Magnitude() {
-				return ws, nil
-			}
-		}
-	}
-	return GameState(0), NoWinningStateError
 }
