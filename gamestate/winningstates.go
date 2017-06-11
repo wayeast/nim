@@ -1,11 +1,14 @@
 package gamestate
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
 	"github.com/fighterlyt/permutation"
 )
+
+var NoWinningStateError error = errors.New("No winning states reachable from here.")
 
 // From: https://en.wikipedia.org/wiki/Nim#Winning_positions
 var winning_positions [][]uint8 = [][]uint8{

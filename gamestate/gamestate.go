@@ -1,11 +1,8 @@
 package gamestate
 
 import (
-	"errors"
 	"math"
 )
-
-var NoWinningStateError error = errors.New("No winning states reachable from here.")
 
 type GameState uint32
 
@@ -43,24 +40,24 @@ func (gs GameState) Magnitude() int {
 	return int(gs.A()) + int(gs.B()) + int(gs.C())
 }
 
-var two_element_masks [3]uint32 = [3]uint32{
-	math.MaxUint8<<16 | math.MaxUint8<<8,
-	math.MaxUint8<<8 | math.MaxUint8,
-	math.MaxUint8<<16 | math.MaxUint8,
+var twos_masks = map[string]uint32{
+	"A": math.MaxUint8<<16 | math.MaxUint8<<8,
+	"B": math.MaxUint8<<8 | math.MaxUint8,
+	"C": math.MaxUint8<<16 | math.MaxUint8,
 }
 
-func (gs GameState) Twos() []GameState {
-	return []GameState{
-		GameState(uint32(gs) & two_element_masks[0]),
-		GameState(uint32(gs) & two_element_masks[1]),
-		GameState(uint32(gs) & two_element_masks[2]),
+func (gs GameState) Twos() map[string]GameState {
+	m := make(map[string]GameState)
+	for _, key := range []string{"A", "B", "C"} {
+		m[key] = GameState(uint32(gs) & twos_masks[key])
 	}
+	return m
 }
 
 func (gs GameState) CanGoToWinningState() (GameState, error) {
 	for ws, mg := range WinningStates {
-		for i, two := range gs.Twos() {
-			if uint32(ws)&two_element_masks[i] == uint32(two) && mg < gs.Magnitude() {
+		for key, two := range gs.Twos() {
+			if uint32(ws)&twos_masks[key] == uint32(two) && mg < gs.Magnitude() {
 				return ws, nil
 			}
 		}

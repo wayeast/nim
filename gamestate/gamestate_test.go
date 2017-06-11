@@ -98,7 +98,10 @@ func TestMagnitude(t *testing.T) {
 	for _, test := range tests {
 		mg := WinningStates[test.Gs]
 		if mg != test.Magnitude {
-			t.Errorf("%s: expected Magnitude %d; got %d\n", test.Name, test.Magnitude, mg)
+			t.Errorf("%s: expected WinningStates[] %d; got %d\n", test.Name, test.Magnitude, mg)
+		}
+		if test.Gs.Magnitude() != test.Magnitude {
+			t.Errorf("%s: expected Magnitude() %d; got %d\n", test.Name, test.Magnitude, mg)
 		}
 	}
 }
@@ -107,42 +110,43 @@ func TestTwos(t *testing.T) {
 	var tests = []struct {
 		Name         string
 		TestGS       GameState
-		ExpectedTwos []GameState
+		ExpectedTwos map[string]GameState
 	}{
 		{
 			Name:   "(1, 1, 1)",
 			TestGS: New(1, 1, 1),
-			ExpectedTwos: []GameState{
-				New(1, 1, 0),
-				New(0, 1, 1),
-				New(1, 0, 1),
+			ExpectedTwos: map[string]GameState{
+				"A": New(1, 1, 0),
+				"B": New(0, 1, 1),
+				"C": New(1, 0, 1),
 			},
 		},
 		{
 			Name:   "(1, 2, 3)",
 			TestGS: New(1, 2, 3),
-			ExpectedTwos: []GameState{
-				New(1, 2, 0),
-				New(0, 2, 3),
-				New(1, 0, 3),
+			ExpectedTwos: map[string]GameState{
+				"A": New(1, 2, 0),
+				"B": New(0, 2, 3),
+				"C": New(1, 0, 3),
 			},
 		},
 		{
 			Name:   "(3, 2, 1)",
 			TestGS: New(3, 2, 1),
-			ExpectedTwos: []GameState{
-				New(3, 2, 0),
-				New(0, 2, 1),
-				New(3, 0, 1),
+			ExpectedTwos: map[string]GameState{
+				"A": New(3, 2, 0),
+				"B": New(0, 2, 1),
+				"C": New(3, 0, 1),
 			},
 		},
 	}
 
 	for _, test := range tests {
 		twos := test.TestGS.Twos()
-		for i, two := range twos {
-			if two != test.ExpectedTwos[i] {
-				t.Errorf("%s: unexpected two %v for %v\n", test.Name, two, test.ExpectedTwos[i])
+		for key, two := range twos {
+			if two != test.ExpectedTwos[key] {
+				t.Errorf("%s: unexpected two %v for %v\n",
+					test.Name, two, test.ExpectedTwos[key])
 			}
 		}
 	}
