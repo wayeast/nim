@@ -1,6 +1,6 @@
-hash: 3734a405d36d0d809439fe8ab2377e09ff0cccbba3c8dbc69c5167e584b1c97a
-updated: 2017-06-10T13:24:32.353735764-05:00
+hash: 6d0a3e877cec439501fce9bb9438f1045dfdd0d66b124310317605d5f0dd3079
+updated: 2017-06-15T23:09:27.140861079-05:00
 imports:
-- name: github.com/fighterlyt/permutation
-  version: ac78aa5051aee58420e3b3e208ba5d500445ef63
+- name: github.com/wayeast/permutation
+  version: b1574f07fc5d07cdcc6a0776d388ed9b7cfd6313
 testImports: []

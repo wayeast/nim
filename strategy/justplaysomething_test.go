@@ -26,7 +26,7 @@ func TestJustPlaySomethingReturnsEventually(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		for i := 0; i < 25; i++ {
+		for i := 0; i < 100; i++ {
 			next, _ := JustPlaySomething(test.TestGS)
 			if next == test.TestGS {
 				t.Errorf("Hmm, got same result for input %v\n", test.TestGS.AsSlice())

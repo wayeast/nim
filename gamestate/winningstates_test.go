@@ -7,7 +7,7 @@ import (
 
 func TestWinningStatesInitializedCorrectly(t *testing.T) {
 	// Right number of states
-	if len(WinningStates) != 117 {
+	if len(WinningStates) != 118 {
 		t.Errorf("Length mismatch of winning_positions (%d) to WinningStates (%d)\n",
 			len(winning_positions), len(WinningStates))
 	}
@@ -18,6 +18,11 @@ func TestWinningStatesInitializedCorrectly(t *testing.T) {
 		Gs        GameState
 		Magnitude int
 	}{
+		{
+			Name:      "0, 0, 0",
+			Gs:        New(0, 0, 0),
+			Magnitude: 0,
+		},
 		{
 			Name:      "1, 1, 0",
 			Gs:        New(1, 1, 0),

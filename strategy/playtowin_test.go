@@ -51,7 +51,11 @@ func TestPlayToWin(t *testing.T) {
 			Name:       "(0, 1, 0)",
 			GS:         gamestate.New(0, 1, 0),
 			ExpectedWM: gamestate.New(0, 0, 0),
-			Error:      gamestate.NoWinningStateError,
+		},
+		{
+			Name:       "(3, 0, 0)",
+			GS:         gamestate.New(3, 0, 0),
+			ExpectedWM: gamestate.New(0, 0, 0),
 		},
 	}
 
@@ -65,8 +69,9 @@ func TestPlayToWin(t *testing.T) {
 				test.Name, wm.AsSlice(), test.ExpectedWM.AsSlice())
 		}
 	}
+}
 
-	// Check that calling PlayToWin on any WinningState results in an error
+func TestPlayToWinReturnsErrorOnWinningState(t *testing.T) {
 	for ws, _ := range gamestate.WinningStates {
 		wm, err := PlayToWin(ws)
 		if err != gamestate.NoWinningStateError {

@@ -6,7 +6,7 @@ import (
 	"github.com/wayeast/nim/gamestate"
 )
 
-func JustPlaySomething(gs gamestate.GameState) (gamestate.GameState, error) {
+var JustPlaySomething = func(gs gamestate.GameState) (gamestate.GameState, error) {
 	for {
 		heap := rand.Int() % 3
 		if heap == 0 && gs.A() > 0 {

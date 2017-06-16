@@ -5,14 +5,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fighterlyt/permutation"
+	"github.com/wayeast/permutation"
 )
 
 var NoWinningStateError error = errors.New("No winning states reachable from here.")
 
 // From: https://en.wikipedia.org/wiki/Nim#Winning_positions
 var winning_positions [][]uint8 = [][]uint8{
-	{1, 1, 0},
 	{1, 2, 3},
 	{1, 4, 5},
 	{1, 6, 7},
@@ -57,6 +56,10 @@ func init() {
 			WinningStates[gs] = gs.Magnitude()
 		}
 	}
+
+	// Add gameover gamestate
+	gameover := New(0, 0, 0)
+	WinningStates[gameover] = gameover.Magnitude()
 }
 
 func IsWinningState(gs GameState) bool {
