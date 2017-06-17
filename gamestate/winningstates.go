@@ -8,6 +8,8 @@ import (
 	"github.com/wayeast/permutation"
 )
 
+const GameOver GameState = GameState(0)
+
 var NoWinningStateError error = errors.New("No winning states reachable from here.")
 
 // From: https://en.wikipedia.org/wiki/Nim#Winning_positions
@@ -58,8 +60,8 @@ func init() {
 	}
 
 	// Add gameover gamestate
-	gameover := New(0, 0, 0)
-	WinningStates[gameover] = gameover.Magnitude()
+	//gameover := GameState(0)
+	WinningStates[GameOver] = GameOver.Magnitude()
 }
 
 func IsWinningState(gs GameState) bool {

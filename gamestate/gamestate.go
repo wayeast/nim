@@ -2,6 +2,8 @@ package gamestate
 
 import (
 	"math"
+	"math/rand"
+	"time"
 )
 
 type GameState uint32
@@ -9,6 +11,16 @@ type GameState uint32
 func New(a, b, c uint8) (gs GameState) {
 	gs |= GameState(a)<<16 | GameState(b)<<8 | GameState(c)
 	return
+}
+
+func StartGame() (gs GameState) {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	a := uint8(r1.Intn(15))
+	b := uint8(r1.Intn(15))
+	c := uint8(r1.Intn(15))
+
+	return New(a, b, c)
 }
 
 const AMask = math.MaxUint8 << 16

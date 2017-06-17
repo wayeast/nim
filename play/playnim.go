@@ -14,11 +14,11 @@ const (
 	Visitor Player = 1
 )
 
-func changePlayer(p Player) Player {
+func ChangePlayer(p Player) Player {
 	return (p + 1) % 2
 }
 
-func getNextPlay(p Player, gs gamestate.GameState) gamestate.GameState {
+func GetNextPlay(p Player, gs gamestate.GameState) gamestate.GameState {
 	if p == Home {
 		return getHomePlay(gs)
 	} else {
@@ -47,7 +47,10 @@ func getHomePlay(gs gamestate.GameState) gamestate.GameState {
 func getVisitorPlay(gs gamestate.GameState) gamestate.GameState {
 	var a, b, c uint8
 
-	for !checkInput(gs, a, b, c) {
+	fmt.Printf("Current state: %v => Enter A B C: ", gs.AsSlice())
+	fmt.Scan(&a, &b, &c)
+
+	for !validInput(gs, a, b, c) {
 		fmt.Printf("Current state: %v => Enter A B C: ", gs.AsSlice())
 		fmt.Scan(&a, &b, &c)
 	}
@@ -55,11 +58,11 @@ func getVisitorPlay(gs gamestate.GameState) gamestate.GameState {
 	return gamestate.New(a, b, c)
 }
 
-func checkInput(gs gamestate.GameState, a, b, c uint8) bool {
-	if a == 0 && b == 0 && c == 0 {
-		//fmt.Println("Not a valid move. Something must be greater than zero.")
-		return false
-	}
+func validInput(gs gamestate.GameState, a, b, c uint8) bool {
+	// if a == 0 && b == 0 && c == 0 {
+	// 	//fmt.Println("Not a valid move. Something must be greater than zero.")
+	// 	return false
+	// }
 	if gs == gamestate.New(a, b, c) {
 		fmt.Println("Not a valid move. You must take something from one pile.")
 		return false
