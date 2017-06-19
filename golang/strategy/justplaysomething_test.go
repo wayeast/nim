@@ -3,7 +3,7 @@ package strategy
 import (
 	"testing"
 
-	"github.com/wayeast/nim/gamestate"
+	"github.com/wayeast/nim/golang/gamestate"
 )
 
 func TestJustPlaySomethingReturnsEventually(t *testing.T) {

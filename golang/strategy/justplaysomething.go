@@ -3,7 +3,7 @@ package strategy
 import (
 	"math/rand"
 
-	"github.com/wayeast/nim/gamestate"
+	"github.com/wayeast/nim/golang/gamestate"
 )
 
 var JustPlaySomething = func(gs gamestate.GameState) (gamestate.GameState, error) {

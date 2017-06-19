@@ -3,8 +3,8 @@ package play
 import (
 	"fmt"
 
-	"github.com/wayeast/nim/gamestate"
-	"github.com/wayeast/nim/strategy"
+	"github.com/wayeast/nim/golang/gamestate"
+	"github.com/wayeast/nim/golang/strategy"
 )
 
 type Player int

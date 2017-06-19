@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/wayeast/nim/gamestate"
-	"github.com/wayeast/nim/play"
+	"github.com/wayeast/nim/golang/gamestate"
+	"github.com/wayeast/nim/golang/play"
 )
 
 func main() {

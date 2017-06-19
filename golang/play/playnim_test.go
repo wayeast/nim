@@ -3,7 +3,7 @@ package play
 import (
 	"testing"
 
-	"github.com/wayeast/nim/gamestate"
+	"github.com/wayeast/nim/golang/gamestate"
 )
 
 func TestChangePlayer(t *testing.T) {

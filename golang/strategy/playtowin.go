@@ -1,7 +1,7 @@
 package strategy
 
 import (
-	"github.com/wayeast/nim/gamestate"
+	"github.com/wayeast/nim/golang/gamestate"
 )
 
 var PlayToWin Strategy = func(gs gamestate.GameState) (gamestate.GameState, error) {
