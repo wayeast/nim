@@ -1,0 +1,19 @@
+{
+  "name": "nimjs",
+  "version": "1.0.0",
+  "description": "Javascript implementation of game of nim.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/wayeast/nim/javascript"
+  },
+  "author": "Huston Bokinsky",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
