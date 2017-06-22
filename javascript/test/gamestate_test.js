@@ -1,9 +1,27 @@
 "use strict"
 
-var expect = require('chai').expect;
+let expect = require('chai').expect;
 let GameState = require('../app/gamestate');
 
 describe('GameState class', function() {
+  describe('correctly initializes member values', function() {
+    let gs;
+
+    beforeEach(() => {
+      gs = new GameState(1, 2, 3);
+    });
+
+    it('sets A, B, and C in right order', function() {
+      expect(gs.A).to.equal(1);
+      expect(gs.B).to.equal(2);
+      expect(gs.C).to.equal(3);
+    });
+
+    it('has right magnitude', function() {
+      expect(gs.magnitude()).to.equal(6);
+    });
+  });
+
   describe('restricts values of A, B, and C', function() {
     let gamestate;
 

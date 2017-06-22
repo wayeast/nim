@@ -30,6 +30,10 @@ class GameState {
     }
     this._c = newC;
   }
+
+  magnitude() {
+    return this._a + this._b + this._c;
+  }
 }
 
 module.exports = GameState;
