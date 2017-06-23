@@ -1,7 +1,7 @@
 "use strict"
 
 var expect = require('chai').expect;
-let GameState = require('../../app/gamestate');
+let GameState = require('../../app/game/gamestate');
 let gamestatesEqual = require('../../app/lib/gamestateFns').gamestatesEqual;
 let gamestatesEqual2_3 = require('../../app/lib/gamestateFns').gamestatesEqual2_3;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let GameState = require('../gamestate');
+let GameState = require('../game/gamestate');
 
 module.exports = {
   gamestatesEqual: function (gs1, gs2) {

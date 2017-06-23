@@ -1,6 +1,6 @@
 'use strict';
 
-let GameState = require('../gamestate');
+let GameState = require('../game/gamestate');
 let permutation = require('array-permutation');
 
 let winningPositions = [

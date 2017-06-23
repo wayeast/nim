@@ -34,6 +34,10 @@ class GameState {
   magnitude() {
     return this._a + this._b + this._c;
   }
+
+  toString() {
+    return '(' + this._a + ', ' + this._b + ', ' + this._c + ')';
+  }
 }
 
 module.exports = GameState;

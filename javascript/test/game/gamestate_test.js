@@ -1,7 +1,7 @@
 "use strict"
 
 let expect = require('chai').expect;
-let GameState = require('../app/gamestate');
+let GameState = require('../../app/game/gamestate');
 
 describe('GameState class', function() {
   describe('correctly initializes member values', function() {
@@ -19,6 +19,10 @@ describe('GameState class', function() {
 
     it('has right magnitude', function() {
       expect(gs.magnitude()).to.equal(6);
+    });
+
+    it('stringifies correctly', function() {
+      expect(gs.toString()).to.equal("(1, 2, 3)");
     });
   });
 
